@@ -5,6 +5,8 @@
 ## Questions to be solved
 
 1. Pp 20 interpretation from othose odds ratios
+2. Pp 56 notes 
+3. pp 64 population-averaged
 
 ## Models for Matched Pairs
 
@@ -56,12 +58,62 @@
     1. Male:95CI for $\pi_{1+} - \pi_{+1}$ = 0.088 $\pm$ 1.96(0.0189) = (0.051, 0.125) We infer that the population percentage of males voting D increased by between 5% and 13%
     2. Female: (0.106, 0.171), shift toward D seems that it may be greater for females than males.
     3. 95CI for a difference of differences: (0.138 - 0.088) $\pm$ 1.96 $\sqrt{(0.0189)^2 + (0.0167)^2}$ = (0.001, 0.1) There is evidence of a greater shift for females than males, as much as 10%.
+    4. Sample odds ratio 175\*188/(16\*54) = 38.1 Two observations have strong association
+    5. independent samples has SE of 0.034 nearly twice as large as dependent
 12. **Increased precision**
     1. Dependent samples can help improve the precision of statistical inferences for **Within-Subject Effects**
     2. **Substaintial **when samples are highly correlated
-13. 
+    3. **dependent var / independent var  difference**: $diff var(\sqrt{n}d) = -2(\pi_{11}\pi_{22} - \pi_{12}\pi_{21})$
+    4. **positive dependence**: $log\theta = log [\pi_{11} \pi_{22} / \pi_{12} \pi_{21} ] > 0 $ that is $\pi_{11} \pi_{22}  > \pi_{12} \pi_{21} $ implies a smaller variance for d for dependent samples.
+13. Inference notes
+    1. McNemar statistics depends only on cases classified in **different** categories(12 21) for the two observations.
+    2. all cases contribute to inference about how much $\pi_{1+}$ and $\pi_{+1}$ differ.
+    3. n11 and n22 may not contribute to whether there is marginal heterogeneity, but they do suggest whatever heterogeneity exits is small.
 
 
+
+## Logistic Regression for Matched Pairs
+
+1. **Marginal Models:** describe the marginal distributions of responses for the two observations.
+
+   1. $P(Y_1 = 1) = \alpha + \delta, P(Y_2 = 1) = \alpha$
+
+      ​	$\delta = P(Y_1 = 1) - P(Y_2 = 1)$
+
+      ​	Hypothesis of equal marginal probability for McNemar's test: $H_0: \delta = 0$
+
+   2. alternative model applies the logit link:
+
+      $logit[P(Y_1 = 1)] = \alpha + \beta, logit[P(Y_2 = 1)] = \alpha$
+
+      OR 	$logit[P(Y_t = 1)] = \alpha + \beta x_t$ 
+
+      where $x_t$: indicator var that equals 1 when t = 1 and 0 when t = 2 
+
+      ML estimate of $\beta$ is the **log odds ratio of marginal proportions**, $\hat{\beta} = log[(p_{+1}/p_{+2})/(p_{1+} / p_{2+})]$
+
+2. **Subject-specific model**: $link[P(Y_{it} = 1)] = \alpha_i + \beta x_t$ . 
+
+   1. The effect of beta is defined conditional on the subject. 
+   2. A model of these tables can allow probabilities to vary by subject. They have subject-specific intercepts.
+   3. its estimate decribes conditional association for the 3-way table stratified by subject
+   4. The effect in marginal models are **population-averaged**, since they refer to averaging over the entire population.
+
+3. **Subject-specific Tables**: 2x2xn talbe with separate partial table for each of n matched pairs. Models refer to it are **Conditional Models**.
+
+   **population-averaged table** : 2x2 table that cross-classifies in a single table the two responses for all subjects.
+
+4. $logit[P(Y_{i1} = 1)] = \alpha_i + \beta  , logit[P(Y_{i2} = 1)] = \alpha_i$
+
+   $P(Y_{i1} = 1) = exp(\alpha_i + \beta)/(1 + exp(\alpha_i + \beta)), P(Y_{i1} = 1) = exp(\alpha_i) /(1 + exp(\alpha_i))$
+
+   ${\alpha_i}$ permits the probability vary among subject
+
+   **Subject with relatively large positive $\alpha_i$**: next class use formula
+
+   **Subject with relatively large negative $\alpha_i$**:
+
+5. 
 
 
 
