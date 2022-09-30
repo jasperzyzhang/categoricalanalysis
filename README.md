@@ -10,3 +10,5 @@ Collect and collate info based on my understanding
 
 Hope my notes will be helpful for anyone working on this topic.
 
+Eventually these are useless for preparing my final exam. Sad.
+
